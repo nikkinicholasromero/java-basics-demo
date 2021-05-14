@@ -2,6 +2,7 @@ package com.demo;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class Localization {
@@ -28,7 +29,23 @@ public class Localization {
     }
 
     private static void resourceBundleProperties() {
+        System.out.println(Locale.getDefault());
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("messages", new Locale("fil", "PH"));
-        System.out.println(resourceBundle.getString("hello"));
+//        System.out.println(resourceBundle.getString("hello"));
+//        System.out.println(resourceBundle.getString("hi"));
+//        System.out.println(resourceBundle.getString("goodbye"));
+
+        Properties properties = new Properties();
+
+        resourceBundle.keySet()
+                .stream()
+                .peek(e -> properties.put(e, resourceBundle.getString(e)))
+                .map(e -> e + ":" + resourceBundle.getString(e))
+                .forEach(System.out::println);
+
+        System.out.println(properties.getProperty("hello"));
+        System.out.println(properties.getProperty("hello", "Hello"));
+        System.out.println(properties.getOrDefault("hello", "Hello"));
     }
 }
