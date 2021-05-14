@@ -44,8 +44,14 @@ public class Localization {
                 .map(e -> e + ":" + resourceBundle.getString(e))
                 .forEach(System.out::println);
 
+        System.out.println(properties.get("hello"));
         System.out.println(properties.getProperty("hello"));
         System.out.println(properties.getProperty("hello", "Hello"));
         System.out.println(properties.getOrDefault("hello", "Hello"));
+
+        properties.keySet()
+            .stream()
+            .map(e -> e + ":" + properties.get(e))
+            .forEach(System.out::println);
     }
 }
