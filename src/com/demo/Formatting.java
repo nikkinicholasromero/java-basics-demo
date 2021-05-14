@@ -98,5 +98,22 @@ public class Formatting {
         System.out.println(dateTimeFormatter13.format(LocalDate.now()));
         // System.out.println(dateTimeFormatter13.format(LocalTime.now())); // UnsupportedTemporalTypeException
 
+        DateTimeFormatter dateTimeFormatter14 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println(LocalDateTime.parse("2020-01-02 12:14:11", dateTimeFormatter14));
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter14));
+        // System.out.println(LocalDate.now().format(dateTimeFormatter14)); // UnsupportedTemporalTypeException
+        // System.out.println(LocalTime.now().format(dateTimeFormatter14)); // UnsupportedTemporalTypeException
+
+        DateTimeFormatter dateTimeFormatter15 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        System.out.println(LocalDate.parse("2020-01-01", dateTimeFormatter15));
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter15));
+        System.out.println(LocalDate.now().format(dateTimeFormatter15));
+        // System.out.println(LocalTime.now().format(dateTimeFormatter15)); // UnsupportedTemporalTypeException
+
+        DateTimeFormatter dateTimeFormatter16 = DateTimeFormatter.ofPattern("HH:mm:ss");
+        System.out.println(LocalTime.parse("12:14:11", dateTimeFormatter16));
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter16));
+        // System.out.println(LocalDate.now().format(dateTimeFormatter16)); // UnsupportedTemporalTypeException
+        System.out.println(LocalTime.now().format(dateTimeFormatter16));
     }
 }
