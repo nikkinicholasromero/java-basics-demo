@@ -3,6 +3,11 @@ package com.demo;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Locale;
 
 public class Formatting {
@@ -10,6 +15,7 @@ public class Formatting {
         System.out.println(MessageFormat.format("Hello {0}", "Nikki"));
 
         numberFormat();
+        dateTimeFormatter();
     }
 
     private static void numberFormat() throws ParseException {
@@ -45,5 +51,52 @@ public class Formatting {
 
         System.out.println(numberFormat07.parse("95%"));
         System.out.println(numberFormat08.parse("95.75%"));
+    }
+
+    private static void dateTimeFormatter() {
+        DateTimeFormatter dateTimeFormatter01 = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+        DateTimeFormatter dateTimeFormatter02 = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+
+        DateTimeFormatter dateTimeFormatter03 = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+        DateTimeFormatter dateTimeFormatter04 = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);
+
+        DateTimeFormatter dateTimeFormatter05 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+        DateTimeFormatter dateTimeFormatter06 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter01)); // 5/14/21
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter02)); // May 14, 2021
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter03)); // 10:07 AM
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter04)); // 10:07:42 AM
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter05)); // 5/14/21, 10:07 AM
+        System.out.println(LocalDateTime.now().format(dateTimeFormatter06)); // May 14, 2021, 10:07:42 AM
+
+        System.out.println(LocalDate.now().format(dateTimeFormatter01)); // 5/14/21
+        System.out.println(LocalDate.now().format(dateTimeFormatter02)); // May 14, 2021
+        // System.out.println(LocalDate.now().format(dateTimeFormatter03)); // UnsupportedTemporalTypeException
+        // System.out.println(LocalDate.now().format(dateTimeFormatter04)); // UnsupportedTemporalTypeException
+        // System.out.println(LocalDate.now().format(dateTimeFormatter05)); // UnsupportedTemporalTypeException
+        // System.out.println(LocalDate.now().format(dateTimeFormatter06)); // UnsupportedTemporalTypeException
+
+        DateTimeFormatter dateTimeFormatter07 = DateTimeFormatter.ISO_TIME;
+        DateTimeFormatter dateTimeFormatter08 = DateTimeFormatter.ISO_DATE;
+        DateTimeFormatter dateTimeFormatter09 = DateTimeFormatter.ISO_DATE_TIME;
+        DateTimeFormatter dateTimeFormatter10 = DateTimeFormatter.ISO_LOCAL_TIME;
+        DateTimeFormatter dateTimeFormatter11 = DateTimeFormatter.ISO_LOCAL_DATE;
+        DateTimeFormatter dateTimeFormatter12 = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        DateTimeFormatter dateTimeFormatter13 = DateTimeFormatter.BASIC_ISO_DATE;
+
+        System.out.println("==========");
+
+        System.out.println(dateTimeFormatter07.format(LocalTime.now()));
+        System.out.println(dateTimeFormatter08.format(LocalDate.now()));
+        System.out.println(dateTimeFormatter09.format(LocalDateTime.now()));
+        System.out.println(dateTimeFormatter10.format(LocalTime.now()));
+        System.out.println(dateTimeFormatter11.format(LocalDate.now()));
+        System.out.println(dateTimeFormatter12.format(LocalDateTime.now()));
+
+        System.out.println(dateTimeFormatter13.format(LocalDateTime.now()));
+        System.out.println(dateTimeFormatter13.format(LocalDate.now()));
+        // System.out.println(dateTimeFormatter13.format(LocalTime.now())); // UnsupportedTemporalTypeException
+
     }
 }

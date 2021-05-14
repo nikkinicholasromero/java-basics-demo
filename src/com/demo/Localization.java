@@ -32,9 +32,9 @@ public class Localization {
         System.out.println(Locale.getDefault());
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("messages", new Locale("fil", "PH"));
-//        System.out.println(resourceBundle.getString("hello"));
-//        System.out.println(resourceBundle.getString("hi"));
-//        System.out.println(resourceBundle.getString("goodbye"));
+        System.out.println(resourceBundle.getString("hello"));
+        System.out.println(resourceBundle.getString("hi"));
+        System.out.println(resourceBundle.getString("goodbye"));
 
         Properties properties = new Properties();
 
