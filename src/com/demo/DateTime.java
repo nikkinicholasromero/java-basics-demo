@@ -5,6 +5,15 @@ import java.time.temporal.ChronoUnit;
 
 public class DateTime {
     public static void main(String[] args) {
+        ZoneId zoneId = ZoneId.of("Asia/Singapore");
+
+        ZonedDateTime zonedDateTime00 = ZonedDateTime.now();
+        ZonedDateTime zonedDateTime01 = LocalDateTime.now().atZone(zoneId);
+        ZonedDateTime zonedDateTime02 = zonedDateTime00.withZoneSameInstant(zoneId);
+
+        System.out.println(zonedDateTime00);
+        System.out.println(zonedDateTime01.getDayOfMonth());
+        System.out.println(zonedDateTime02.getDayOfMonth());
     }
 
     private static void instantiation() {
