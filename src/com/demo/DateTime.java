@@ -5,6 +5,9 @@ import java.time.temporal.ChronoUnit;
 
 public class DateTime {
     public static void main(String[] args) {
+        Period p = Period.between(LocalDate.now(), LocalDate.of(2021, Month.MAY, 14));
+        System.out.println(p);
+
         ZoneId zoneId = ZoneId.of("Asia/Singapore");
 
         ZonedDateTime zonedDateTime00 = ZonedDateTime.now();
