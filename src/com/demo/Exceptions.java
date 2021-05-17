@@ -1,8 +1,34 @@
 package com.demo;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class Exceptions {
-    public static void main(String[] args) {
-        autoCloseable();
+    public static void main(String[] args)  {
+    }
+
+    private static void generalException() throws IOException, SQLException {
+        try {
+            throwsExceptions();
+        } catch (Exception e) {
+            // e here is not effectively final
+            // e is inferred to be either IOException or SQLException (from the throwsException signature)
+            // if e is re-assigned, e will be considered of type Exception.class. the throw line will not compile anymore
+            throw e;
+        }
+    }
+
+    private static void multicatch() throws IOException, SQLException {
+        try {
+            throwsExceptions();
+        } catch (IOException | SQLException e) {
+            // e here is effectively final and cannot be reassigned
+            throw e;
+        }
+    }
+
+    private static void throwsExceptions() throws IOException, SQLException {
+
     }
 
     private static void builtInExceptions() {
@@ -46,13 +72,9 @@ public class Exceptions {
     }
 }
 
-class CustomException extends Exception {
+class CustomException extends Exception {}
 
-}
-
-class CustomRuntimeException extends RuntimeException {
-
-}
+class CustomRuntimeException extends RuntimeException {}
 
 class CustomAutoCloseableA implements AutoCloseable {
     @Override
