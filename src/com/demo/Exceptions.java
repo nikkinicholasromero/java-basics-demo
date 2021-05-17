@@ -2,6 +2,7 @@ package com.demo;
 
 public class Exceptions {
     public static void main(String[] args) {
+        autoCloseable();
     }
 
     private static void builtInExceptions() {
@@ -25,5 +26,46 @@ public class Exceptions {
         java.io.IOException ioException; // programmatically thrown
         java.io.NotSerializableException notSerializableException; // programmatically thrown
         java.sql.SQLException sqlException; // programmatically thrown
+    }
+
+    private static void autoCloseable() {
+        try (CustomAutoCloseableA customAutoCloseableA = new CustomAutoCloseableA();
+            CustomAutoCloseableB customAutoCloseableB = new CustomAutoCloseableB()) {
+            System.out.println("Running try method");
+            throw new RuntimeException();
+        } catch (CustomException e) {
+            System.out.println("This should only run if the first exception thrown is CustomException " + e);
+        } catch (RuntimeException e) {
+            System.out.println("Main exception is " + e);
+
+            System.out.println("Suppressed exceptions are :");
+            for (Throwable suppressed: e.getSuppressed()) {
+                System.out.println(suppressed);
+            }
+        }
+    }
+}
+
+class CustomException extends Exception {
+
+}
+
+class CustomRuntimeException extends RuntimeException {
+
+}
+
+class CustomAutoCloseableA implements AutoCloseable {
+    @Override
+    public void close() throws CustomException {
+        System.out.println("Closing " + this.getClass().getName());
+        throw new CustomException();
+    }
+}
+
+class CustomAutoCloseableB implements AutoCloseable {
+    @Override
+    public void close() throws CustomRuntimeException {
+        System.out.println("Closing " + this.getClass().getName());
+        throw new CustomRuntimeException();
     }
 }
