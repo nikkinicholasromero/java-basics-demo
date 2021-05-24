@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Generics {
     public static void main(String[] args) {
+    }
+
+    private static void mixingRaws() {
         Number number = 1.1;
         List<Number> numbers01 = new ArrayList<Number>();
         // List<Number> numbers02 = new ArrayList<Integer>(); // doesn't compile
