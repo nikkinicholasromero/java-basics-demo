@@ -20,3 +20,16 @@ public class Generics {
         List numbers07 = new ArrayList();
     }
 }
+
+interface SomeInterface<T> {
+
+}
+
+class SomeClass<T> implements SomeInterface<T> {
+
+}
+
+class SomeSubClass extends SomeClass<Integer> {
+
+}
+
