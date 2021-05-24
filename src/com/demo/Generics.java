@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Generics {
     public static void main(String[] args) {
+        Number number = 1.1;
         List<Number> numbers01 = new ArrayList<Number>();
         // List<Number> numbers02 = new ArrayList<Integer>(); // doesn't compile
         List<Number> numbers03 = new ArrayList<>();
