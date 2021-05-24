@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 public class ComparatorAndComparable {
     public static void main(String[] args) {
+        Comparator<Duck> comparator = Comparator
+                .comparing(Duck::getName)
+                .thenComparing(Duck::getWeight);
     }
 
     private static void packageAndSignature() {
@@ -23,5 +26,22 @@ public class ComparatorAndComparable {
 }
 
 class Duck {
+    private String name;
+    private double weight;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 }
