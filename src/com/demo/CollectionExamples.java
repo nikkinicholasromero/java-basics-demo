@@ -8,6 +8,9 @@ public class CollectionExamples {
         list(new LinkedList<>());
         list(new Vector<>());
         list(new Stack<>());
+
+        map(new HashMap<>());
+        map(new TreeMap<>());
     }
 
     private static void list(List<String> someList) {
@@ -41,5 +44,28 @@ public class CollectionExamples {
         System.out.println(someList.size()); // 1
         someList.clear();
         System.out.println(someList); // []
+    }
+
+    private static void map(Map<String, String> someMap) {
+        // put, get, remove, containsKey, containsValue, keySet, values, isEmpty, size, clear
+        System.out.println(someMap.put("Nikki", "Romero")); // null
+        System.out.println(someMap.get("Nikki")); // Romero
+        System.out.println(someMap.get("Nicholas")); // null
+        System.out.println(someMap.remove("Nikki")); // Romero
+        System.out.println(someMap.remove("Nicholas")); // null
+
+        someMap.put("Nikki", "Romero");
+        System.out.println(someMap.containsKey("Nikki")); // true
+        System.out.println(someMap.containsKey("Nicholas")); // false
+        System.out.println(someMap.containsValue("Romero")); // true
+        System.out.println(someMap.containsValue("Katahira")); // false
+
+        System.out.println(someMap.keySet()); // Set of keys
+        System.out.println(someMap.values()); // Collection of values
+
+        System.out.println(someMap.isEmpty()); // false
+        System.out.println(someMap.size()); // 1
+        someMap.clear();
+        System.out.println(someMap); // {}
     }
 }
