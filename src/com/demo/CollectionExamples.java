@@ -11,6 +11,8 @@ public class CollectionExamples {
 
         map(new HashMap<>());
         map(new TreeMap<>());
+
+        treeSet();
     }
 
     private static void list(List<String> someList) {
@@ -67,5 +69,42 @@ public class CollectionExamples {
         System.out.println(someMap.size()); // 1
         someMap.clear();
         System.out.println(someMap); // {}
+    }
+
+    private static void treeSet() {
+        // lower, floor, ceiling, higher
+        TreeSet<String> names = new TreeSet<>();
+        names.add("B");
+        names.add("D");
+
+        System.out.println(names.lower("A")); // null
+        System.out.println(names.lower("B")); // null
+        System.out.println(names.lower("C")); // B
+        System.out.println(names.lower("D")); // B
+        System.out.println(names.lower("E")); // D
+
+        System.out.println("---------");
+
+        System.out.println(names.higher("A")); // B
+        System.out.println(names.higher("B")); // D
+        System.out.println(names.higher("C")); // D
+        System.out.println(names.higher("D")); // null
+        System.out.println(names.higher("E")); // null
+
+        System.out.println("---------");
+
+        System.out.println(names.floor("A")); // null
+        System.out.println(names.floor("B")); // B
+        System.out.println(names.floor("C")); // B
+        System.out.println(names.floor("D")); // D
+        System.out.println(names.floor("E")); // D
+
+        System.out.println("---------");
+
+        System.out.println(names.ceiling("A")); // B
+        System.out.println(names.ceiling("B")); // B
+        System.out.println(names.ceiling("C")); // D
+        System.out.println(names.ceiling("D")); // D
+        System.out.println(names.ceiling("E")); // null
     }
 }
