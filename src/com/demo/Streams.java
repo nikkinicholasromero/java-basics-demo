@@ -1,6 +1,9 @@
 package com.demo;
 
 import java.util.Collections;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import java.util.function.*;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -40,6 +43,20 @@ public class Streams {
         DoubleStream doubleStream04 = DoubleStream.iterate(1, (a) -> a + 1);
         // DoubleStream doubleStream05 = DoubleStream.range(1, 6); // DoubleStream does not have range method
         // DoubleStream doubleStream06 = DoubleStream.rangeClosed(1, 5); // DoubleStream does not have rangeClosed method
+
+        int intStreamSum = intStream01.sum();
+        long longStreamSum = longStream01.sum();
+        double doubleStreamSum = doubleStream01.sum();
+
+        OptionalDouble optionalDouble01 = intStream01.average();
+        OptionalDouble optionalDouble02 = longStream01.average();
+        OptionalDouble optionalDouble03 = doubleStream01.average();
+
+        DoubleSupplier doubleSupplier = Math::random;
+        System.out.println(optionalDouble01.orElseGet(doubleSupplier));
+        if (optionalDouble01.isPresent()) {
+            System.out.println(optionalDouble01.getAsDouble());
+        }
     }
 
     private static void convertingStreams() {
