@@ -1,9 +1,6 @@
 package com.demo;
 
-import java.util.Collections;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -12,11 +9,11 @@ import java.util.stream.Stream;
 
 public class Streams {
     public static void main(String[] args) {
-        Stream<String> names = Stream.of("Nikki", "Leslie", "Maven", "Megan");
-        names.sorted(Collections.reverseOrder()).forEach(System.out::println);
+//        Stream<String> names = Stream.of("Nikki", "Leslie", "Maven", "Megan");
+//        names.sorted(Collections.reverseOrder()).forEach(System.out::println);
 
         primitiveStreams();
-        convertingStreams();
+//        convertingStreams();
     }
 
     private static void primitiveStreams() {
@@ -48,15 +45,22 @@ public class Streams {
         long longStreamSum = longStream01.sum();
         double doubleStreamSum = doubleStream01.sum();
 
-        OptionalDouble optionalDouble01 = intStream01.average();
-        OptionalDouble optionalDouble02 = longStream01.average();
-        OptionalDouble optionalDouble03 = doubleStream01.average();
+        OptionalDouble optionalDouble01 = IntStream.of(1, 2, 3).average();
+        OptionalDouble optionalDouble02 = LongStream.of(1, 2, 3).average();
+        OptionalDouble optionalDouble03 = DoubleStream.of(1, 2, 3).average();
 
         DoubleSupplier doubleSupplier = Math::random;
         System.out.println(optionalDouble01.orElseGet(doubleSupplier));
         if (optionalDouble01.isPresent()) {
             System.out.println(optionalDouble01.getAsDouble());
         }
+
+        IntSummaryStatistics intSummaryStatistics = IntStream.of(1, 2, 3).summaryStatistics();
+        System.out.println(intSummaryStatistics.getCount()); // 3
+        System.out.println(intSummaryStatistics.getMin()); // 1
+        System.out.println(intSummaryStatistics.getMax()); // 3
+        System.out.println(intSummaryStatistics.getSum()); // 6
+        System.out.println(intSummaryStatistics.getAverage()); // 2.0
     }
 
     private static void convertingStreams() {
